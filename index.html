@@ -78,19 +78,17 @@
             background-color: var(--c-bg-white);
         }
         
-        /* 背面に巨大なロゴを配置してインパクトを出すCSS */
         .hero-bg-logo {
             position: absolute;
             top: 50%;
-            right: -10vw; /* 画面右側にはみ出すように配置 */
+            right: -10vw;
             transform: translateY(-50%);
-            width: 60vw; /* 画面幅の75%という巨大サイズ */
+            width: 60vw;
             max-width: 1200px;
             min-width: 600px;
             z-index: 0;
-            opacity: 0.5; /* テキストの読みやすさを確保しつつインパクトを与える透明度 */
+            opacity: 0.5;
             pointer-events: none;
-            /* ゆっくり浮遊するアニメーションで高級感を演出 */
             animation: floatLogo 12s ease-in-out infinite alternate;
         }
         @keyframes floatLogo {
@@ -100,7 +98,6 @@
 
         .hero-content {
             position: relative; z-index: 1; max-width: 900px; padding: 0 20px;
-            /* ロゴに重なっても文字が読めるように、薄い白の光彩（ドロップシャドウ）を追加 */
             text-shadow: 0 0 20px rgba(255, 255, 255, 0.9), 0 0 10px rgba(255, 255, 255, 0.8);
         }
         
@@ -132,7 +129,6 @@
             stroke-dasharray: 691; stroke-dashoffset: 691; 
             transition: stroke-dashoffset 2.5s cubic-bezier(0.2, 0.8, 0.2, 1); 
         }
-        /* 80%の位置 (691 * 0.20 = 138.2) */
         .donut-wrapper.is-active .donut-progress { stroke-dashoffset: 138.2; }
         .donut-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
         .donut-text .num { font-family: var(--font-en); font-size: 6rem; font-weight: 800; color: var(--c-blue); line-height: 1; letter-spacing: -0.05em; }
@@ -143,23 +139,123 @@
            ========================================= */
         #path { background-color: var(--c-bg-white); }
         .card-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 60px; }
-        .card { 
+        .path-card { 
             background: #fff; padding: 50px 40px; border-radius: 12px; 
             border: 1px solid var(--c-border); position: relative; overflow: hidden;
             transition: transform 0.4s ease, box-shadow 0.4s ease; 
         }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--c-blue); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
-        .card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .card:hover::before { transform: scaleX(1); }
+        .path-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--c-blue); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease; }
+        .path-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .path-card:hover::before { transform: scaleX(1); }
         .card-num { font-family: var(--font-en); font-size: 4.5rem; font-weight: 800; color: var(--c-bg-gray); line-height: 1; margin-bottom: 1.5rem; letter-spacing: -0.05em; }
-        .card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.5; }
-        .card p { font-size: 0.95rem; color: var(--c-text-sub); margin-bottom: 2rem; }
-        .card-badge { display: inline-block; padding: 8px 24px; background: var(--c-blue-light); color: var(--c-blue); font-size: 0.8rem; font-weight: 700; border-radius: 50px; }
+        .path-card h3 { font-size: 1.3rem; font-weight: 800; margin-bottom: 1.5rem; line-height: 1.5; }
+        .path-card p { font-size: 0.95rem; color: var(--c-text-sub); margin-bottom: 2rem; }
+        .path-badge { display: inline-block; padding: 8px 24px; background: var(--c-blue-light); color: var(--c-blue); font-size: 0.8rem; font-weight: 700; border-radius: 50px; }
+
+        /* =========================================
+           Employee Carousel (社員紹介)
+           ========================================= */
+        .employee-carousel {
+            background-color: var(--c-bg-gray);
+            text-align: center;
+            /* ドラッグ操作時のテキスト選択を無効化 */
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .carousel-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding: 0 40px; /* 矢印ボタンのスペース確保 */
+        }
+        .carousel-wrapper {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            display: flex;
+            gap: 30px;
+            padding: 20px 0 40px 0; /* 下部のシャドウが見切れないよう余白 */
+            scroll-behavior: smooth;
+            width: 100%;
+        }
+        /* スクロールバー非表示 */
+        .carousel-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+        .employee-card {
+            flex: 0 0 auto;
+            width: 300px;
+            background-color: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            scroll-snap-align: center;
+            text-align: left;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .employee-card:hover {
+            transform: translateY(-5px);
+        }
+        .card-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--c-blue);
+            /* 画像自体のドラッグを無効化 */
+            pointer-events: none; 
+        }
+        .card-content {
+            padding: 24px;
+        }
+        .card-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--c-text-main);
+            margin-bottom: 0.5rem;
+        }
+        .card-badge {
+            display: inline-block;
+            background-color: var(--c-blue-light);
+            color: var(--c-blue);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        .card-description {
+            font-size: 0.95rem;
+            color: var(--c-text-sub);
+            line-height: 1.6;
+        }
+        .carousel-btn {
+            background-color: var(--c-text-main);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 48px;
+            height: 48px;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 45%;
+            transform: translateY(-50%);
+            z-index: 10;
+            transition: background-color 0.3s ease;
+        }
+        .carousel-btn:hover {
+            background-color: var(--c-blue);
+        }
+        .carousel-btn.prev-btn { left: 0; }
+        .carousel-btn.next-btn { right: 0; }
+        .carousel-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
         /* =========================================
            Target & Journey
            ========================================= */
-        #target { background-color: var(--c-bg-gray); }
+        #target { background-color: var(--c-bg-white); }
         .check-list li { 
             position: relative; padding-left: 3.5rem; margin-bottom: 2rem; 
             font-size: 1.05rem; font-weight: 700; border-bottom: 1px solid var(--c-border); padding-bottom: 2rem; 
@@ -180,7 +276,7 @@
             position: absolute; left: -72px; top: -5px; width: 44px; height: 44px; 
             background: #fff; border: 2px solid var(--c-blue); color: var(--c-blue); 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
-            font-family: var(--font-en); font-weight: 800; font-size: 1.1rem; box-shadow: 0 0 0 8px var(--c-bg-gray);
+            font-family: var(--font-en); font-weight: 800; font-size: 1.1rem; box-shadow: 0 0 0 8px var(--c-bg-white);
         }
         .tl-title { font-weight: 800; font-size: 1.25rem; margin-bottom: 0.5rem; }
         .tl-desc { font-size: 0.95rem; color: var(--c-text-sub); }
@@ -188,7 +284,7 @@
         /* =========================================
            FAQ
            ========================================= */
-        #faq { background-color: var(--c-bg-white); }
+        #faq { background-color: var(--c-bg-gray); }
         .faq-item { border-bottom: 1px solid var(--c-border); }
         .faq-q { 
             width: 100%; display: flex; justify-content: space-between; align-items: center; 
@@ -213,7 +309,8 @@
             .grid-2, .card-grid { grid-template-columns: 1fr; gap: 50px; }
             section { padding: 80px 0; }
             .hero h1 { font-size: 2rem; }
-            .hero-bg-logo { top: 60%; right: -30vw; width: 120vw; } /* スマホでも良い感じにはみ出させる */
+            .hero-bg-logo { top: 60%; right: -30vw; width: 120vw; }
+            .employee-card { width: 260px; } /* スマホ用のカード幅調整 */
         }
     </style>
 </head>
@@ -228,10 +325,10 @@
 
     <section class="hero">
         <img src="wave-icon.jpg" alt="" class="hero-bg-logo">
-        
         <div class="hero-content reveal is-active">
             <h1>未経験から、<br>本物のエンジニアへ。</h1>
-            <p>「自分にITなんて…」と思っているあなたへ。<br>必要なのは、一歩踏み出す勇気だけ。</p>        </div>
+            <p>「自分にITなんて…」と思っているあなたへ。<br>必要なのは、一歩踏み出す勇気だけ。</p>
+        </div>
     </section>
 
     <section id="numbers">
@@ -261,31 +358,77 @@
                 <h2 class="section-title">3ステップで成長</h2>
             </div>
             <div class="card-grid">
-                <div class="card reveal">
+                <div class="path-card reveal">
                     <div class="card-num">01</div>
                     <span class="en-label" style="font-size:0.75rem;">First Step</span>
                     <h3>ITサポート・<br>システム運用</h3>
                     <p>現場のサポートからスタート。障害対応・ユーザー問い合わせ対応を通じて、ITの全体像が自然に見えてくる。丁寧さと誠実さが一番活きる時期。</p>
-                    <span class="card-badge">研修1週間 → 現場デビュー</span>
+                    <span class="path-badge">研修1週間 → 現場デビュー</span>
                 </div>
-                <div class="card reveal" style="transition-delay: 0.1s;">
+                <div class="path-card reveal" style="transition-delay: 0.1s;">
                     <div class="card-num">02</div>
                     <span class="en-label" style="font-size:0.75rem;">Next Level</span>
                     <h3>サーバー・<br>クラウドインフラ</h3>
                     <p>AWSやAzureを「設計の意図ごと」理解できるレベルへ。サポートの経験があるから、インフラの学習スピードが格段に上がります。</p>
-                    <span class="card-badge">〜 1年目の目標</span>
+                    <span class="path-badge">〜 1年目の目標</span>
                 </div>
-                <div class="card reveal" style="transition-delay: 0.2s;">
+                <div class="path-card reveal" style="transition-delay: 0.2s;">
                     <div class="card-num">03</div>
                     <span class="en-label" style="font-size:0.75rem;">Engineer</span>
                     <h3>業務改善・<br>自動化・開発</h3>
                     <p>現場の問題をコードで解けるエンジニアへ。ここまでの経験が土台にあるから、開発だけ知っている人とは問題解決の深さが違います。</p>
-                    <span class="card-badge">2〜3年後のゴール</span>
+                    <span class="path-badge">2〜3年後のゴール</span>
                 </div>
             </div>
         </div>
     </section>
 
+    <section id="employee-intro" class="employee-carousel">
+        <div class="container">
+            <div class="reveal" style="text-align: center; margin-bottom: 40px;">
+                <span class="en-label">Members</span>
+                <h2 class="section-title">社員紹介</h2>
+            </div>
+            <div class="carousel-container reveal" style="transition-delay: 0.1s;">
+                <button class="carousel-btn prev-btn" aria-label="前へ">‹</button>
+                <div class="carousel-wrapper">
+                    <div class="employee-card">
+                        <img src="staff1.jpg" alt="社員1" class="card-image" />
+                        <div class="card-content">
+                            <p class="card-name">Y.K さん</p>
+                            <span class="card-badge">営業部・マネージャー</span>
+                            <p class="card-description">営業担当。アクアリウムとアウトドアにハマっています。休日は川辺でリフレッシュしています。</p>
+                        </div>
+                    </div>
+                    <div class="employee-card">
+                        <img src="staff2.jpg" alt="社員2" class="card-image" />
+                        <div class="card-content">
+                            <p class="card-name">R.K さん</p>
+                            <span class="card-badge">第二システム開発部</span>
+                            <p class="card-description">Java担当、元歯科衛生士。ハンバーガー屋巡りが趣味で、都内の名店はほぼ制覇しました。</p>
+                        </div>
+                    </div>
+                    <div class="employee-card">
+                        <img src="staff3.jpg" alt="社員3" class="card-image" />
+                        <div class="card-content">
+                            <p class="card-name">H.K さん</p>
+                            <span class="card-badge">第二システム開発部・課長</span>
+                            <p class="card-description">C#をメインに担当。野球観戦、スノボ、ゲームが好きで、週末はアクティブに動いています。</p>
+                        </div>
+                    </div>
+                    <div class="employee-card">
+                        <img src="staff4.jpg" alt="社員4" class="card-image" />
+                        <div class="card-content">
+                            <p class="card-name">A.S さん</p>
+                            <span class="card-badge">ITインフラサポート</span>
+                            <p class="card-description">未経験からインフラへ挑戦中。効率化ツールを調べるのが好きで、社内業務の改善を提案しています。</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-btn next-btn" aria-label="次へ">›</button>
+            </div>
+        </div>
+    </section>
     <section id="target">
         <div class="container grid-2">
             <div class="reveal">
@@ -390,7 +533,7 @@
                 donutContainer.classList.add('is-active');
                 
                 let count = 0;
-                const target = 80; // JS側のターゲットも80に修正済み
+                const target = 80;
                 const duration = 2500; 
                 const increment = target / (duration / 16); 
                 
@@ -427,8 +570,106 @@
                 }
             });
         });
+
+        // =========================================
+        // 社員紹介の横スクロール・ドラッグ・自動再生制御
+        // =========================================
+        const carouselWrapper = document.querySelector('.carousel-wrapper');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+
+        if (carouselWrapper) {
+            const scrollAmount = 330; // カード1枚分＋余白
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            let autoPlayInterval;
+            const autoPlayDelay = 3000; // 3秒間隔
+
+            // --- 関数定義 ---
+            const stopAutoPlay = () => {
+                clearInterval(autoPlayInterval);
+            };
+
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                autoPlayInterval = setInterval(() => {
+                    const maxScrollLeft = carouselWrapper.scrollWidth - carouselWrapper.clientWidth;
+                    // 右端に到達したら最初に戻る
+                    if (carouselWrapper.scrollLeft >= maxScrollLeft - 10) {
+                        carouselWrapper.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        carouselWrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    }
+                }, autoPlayDelay);
+            };
+
+            // --- 1. ボタン制御 ---
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', () => {
+                    carouselWrapper.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                });
+                nextBtn.addEventListener('click', () => {
+                    carouselWrapper.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                });
+
+                const updateCarouselButtons = () => {
+                    prevBtn.disabled = carouselWrapper.scrollLeft <= 0;
+                    nextBtn.disabled = carouselWrapper.scrollLeft >= (carouselWrapper.scrollWidth - carouselWrapper.clientWidth - 1);
+                };
+                carouselWrapper.addEventListener('scroll', updateCarouselButtons);
+                updateCarouselButtons();
+            }
+
+            // --- 2. マウスドラッグ（スワイプ）制御 ---
+            carouselWrapper.style.cursor = 'grab';
+
+            carouselWrapper.addEventListener('mousedown', (e) => {
+                isDown = true;
+                carouselWrapper.style.cursor = 'grabbing';
+                carouselWrapper.style.scrollBehavior = 'auto';
+                carouselWrapper.style.scrollSnapType = 'none';
+                startX = e.pageX - carouselWrapper.offsetLeft;
+                scrollLeft = carouselWrapper.scrollLeft;
+                stopAutoPlay(); // ドラッグ開始で自動再生を止める
+            });
+
+            carouselWrapper.addEventListener('mouseleave', () => {
+                if (!isDown) {
+                    startAutoPlay(); // ドラッグ中でなければ再開
+                    return;
+                }
+                isDown = false;
+                carouselWrapper.style.cursor = 'grab';
+                carouselWrapper.style.scrollBehavior = 'smooth';
+                carouselWrapper.style.scrollSnapType = 'x mandatory';
+                startAutoPlay(); // 画面外に出たら再開
+            });
+
+            carouselWrapper.addEventListener('mouseup', () => {
+                isDown = false;
+                carouselWrapper.style.cursor = 'grab';
+                carouselWrapper.style.scrollBehavior = 'smooth';
+                carouselWrapper.style.scrollSnapType = 'x mandatory';
+                startAutoPlay(); // ドラッグ終了で再開
+            });
+
+            carouselWrapper.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - carouselWrapper.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                carouselWrapper.scrollLeft = scrollLeft - walk;
+            });
+
+            // --- 3. ホバー・タッチ時の自動再生一時停止 ---
+            carouselWrapper.addEventListener('mouseenter', stopAutoPlay);
+            carouselWrapper.addEventListener('touchstart', stopAutoPlay, {passive: true});
+            carouselWrapper.addEventListener('touchend', startAutoPlay);
+
+            // 初期化（自動再生スタート）
+            startAutoPlay();
+        }
     </script>
 </body>
-
 </html>
-
