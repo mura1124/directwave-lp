@@ -173,7 +173,7 @@
         .path-card p { font-size: 0.95rem; color: var(--c-text-sub); margin-bottom: 2rem; }
         .path-badge { display: inline-block; padding: 8px 24px; background: var(--c-blue-light); color: var(--c-blue); font-size: 0.8rem; font-weight: 700; border-radius: 50px; }
 
-        /* =========================================
+      /* =========================================
            Employee Carousel (JS制御)
            ========================================= */
         .employee-carousel {
@@ -184,7 +184,10 @@
             position: relative;
             overflow: hidden; 
             padding: 20px 0 40px 0;
+            /* ▼ ここを追加・変更：ちょうど3枚分（300px×3 + 30px×2）の幅にして中央寄せ */
             width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
         }
         .carousel-track {
             display: flex;
@@ -432,38 +435,53 @@
         </div>
         <div class="carousel-container reveal" style="transition-delay: 0.1s;">
             <div class="carousel-track" id="js-carousel-track">
+                
                 <div class="employee-card">
-                    <img src="staff1.jpg" alt="社員1" class="card-image" />
+                    <img src="staff5.jpg" alt="Y.R" class="card-image" />
                     <div class="card-content">
-                        <p class="card-name">Y.K さん</p>
-                        <span class="card-badge">営業部・マネージャー</span>
-                        <p class="card-description">営業担当. アクアリウムとアウトドアにハマっています. 休日は川辺でリフレッシュしています.</p>
+                        <p class="card-name">Y.Rさん</p>
+                        <span class="card-badge">システムソリューション部開発1G </span>
+                        <p class="card-description">IT業界未経験で入社後、運用業務経験を経て、現在は開発をしております。入社時から開発を希望していましたが自分にできるのか最初は不安でした。ですが現場の方にも恵まれ、少しずつ知識を増やしながら楽しく働くことができています。</p>
                     </div>
                 </div>
+                
                 <div class="employee-card">
                     <img src="staff2.jpg" alt="社員2" class="card-image" />
                     <div class="card-content">
-                        <p class="card-name">R.K さん</p>
-                        <span class="card-badge">第二システム開発部</span>
-                        <p class="card-description">Java担当、元歯科衛生士. ハンバーガー屋巡りが趣味で, 都内の名店はほぼ制覇しました.</p>
+                        <p class="card-name"><K class="T"></K> K.Tさん</p>
+                        <span class="card-badge">システム開発部リーダー</span>
+                        <p class="card-description">入りたての頃は実力不足があり悩むこともありましたが、チーム内の先輩に色々教えて頂き、理解することが出来ました。
+わからない事があれば、気軽に相談できる環境があることで安心できました。また、試験工程の大変さが理解できました。</p>
                     </div>
                 </div>
+                
                 <div class="employee-card">
                     <img src="staff3.jpg" alt="社員3" class="card-image" />
                     <div class="card-content">
                         <p class="card-name">H.K さん</p>
                         <span class="card-badge">第二システム開発部・課長</span>
-                        <p class="card-description">C#をメインに担当. 野球観戦, スノボ, ゲームが好きで, 週末はアクティブに動いています.</p>
+                        <p class="card-description">C#をメインに担当。野球観戦、スノボ、ゲームが好きで、週末はアクティブに動いています。</p>
                     </div>
                 </div>
+
                 <div class="employee-card">
                     <img src="staff4.jpg" alt="社員4" class="card-image" />
                     <div class="card-content">
-                        <p class="card-name">A.S さん</p>
-                        <span class="card-badge">ITインフラサポート</span>
-                        <p class="card-description">未経験からインフラへ挑戦中. 効率化ツールを調べるのが好きで, 社内業務の改善を提案しています.</p>
+                        <p class="card-name">T.K さん</p>
+                        <span class="card-badge">第一システム開発部</span>
+                        <p class="card-description">VBA担当。服好き、動物好き、カフェ巡りが趣味です。休日はお気に入りのカフェで過ごしています。</p>
                     </div>
                 </div>
+
+                <div class="employee-card">
+                    <img src="staff1.jpg" alt="社員5" class="card-image" />
+                    <div class="card-content">
+                        <p class="card-name">T.M さん</p>
+                        <span class="card-badge">第二システム開発部・主任</span>
+                        <p class="card-description">Pythonメイン。料理、キャンプ、ゲームなど多趣味です。週末は自然の中でリフレッシュしています。</p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
