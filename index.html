@@ -50,13 +50,15 @@
 
         .btn-primary {
             display: inline-flex; justify-content: center; align-items: center;
-            padding: 18px 48px; background-color: var(--c-blue); color: #fff;
-            font-weight: 700; font-size: 1rem; border-radius: 50px;
+            padding: 12px 28px; 
+            background-color: #F27D52; /* コーラルオレンジに変更 */
+            color: #fff;
+            font-weight: 700; font-size: 0.85rem; border-radius: 50px;
             letter-spacing: 0.05em; transition: all 0.3s ease;
-            box-shadow: 0 4px 20px rgba(24, 72, 184, 0.2);
+            box-shadow: 0 4px 20px rgba(242, 125, 82, 0.3); /* 影もコーラルオレンジ系に */
             position: relative; z-index: 2;
         }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(24, 72, 184, 0.3); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(242, 125, 82, 0.4); }
 
         /* レスポンシブ表示用ユーティリティ */
         .pc-only { display: block; }
@@ -80,7 +82,7 @@
         .sp-header-btns { display: none; }
 
         /* =========================================
-           Hero Section (ファーストビュー)
+           Hero Section
            ========================================= */
         .hero { 
             height: 100vh; min-height: 700px;
@@ -89,7 +91,6 @@
             background-color: var(--c-bg-white);
         }
         
-        /* ヒーローの波：真ん中付近から右に動いてフェードアウトする */
         .hero-bg-logo {
             position: absolute;
             top: 50%;
@@ -99,17 +100,12 @@
             min-width: 800px;
             z-index: 0;
             pointer-events: none;
-            /* 12秒かけて1周するアニメーションを無限ループ */
             animation: waveFadeRight 12s linear infinite;
         }
         @keyframes waveFadeRight {
-            /* 中央少し左からスタート、最初は透明 */
             0% { transform: translate(-50%, -50%) translateX(-5vw); opacity: 0; }
-            /* すぐにフワッと現れる */
             10% { transform: translate(-50%, -50%) translateX(0vw); opacity: 0.5; }
-            /* しばらくそのまま右へ移動 */
             70% { transform: translate(-50%, -50%) translateX(15vw); opacity: 0.5; }
-            /* 右へ消えていく */
             100% { transform: translate(-50%, -50%) translateX(25vw); opacity: 0; }
         }
 
@@ -118,7 +114,6 @@
             text-shadow: 0 0 15px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 255, 255, 0.8);
         }
         
-        /* ヒーロー文字：フェードインで浮かび上がる */
         @keyframes fadeIn {
             0% { opacity: 0; }
             100% { opacity: 1; }
@@ -179,7 +174,7 @@
         .path-badge { display: inline-block; padding: 8px 24px; background: var(--c-blue-light); color: var(--c-blue); font-size: 0.8rem; font-weight: 700; border-radius: 50px; }
 
         /* =========================================
-           Employee Carousel (自動で流れ続ける無限ループ)
+           Employee Carousel (JS制御)
            ========================================= */
         .employee-carousel {
             background-color: var(--c-bg-gray);
@@ -187,27 +182,15 @@
         }
         .carousel-container {
             position: relative;
-            overflow: hidden; /* はみ出した分を隠す */
+            overflow: hidden; 
             padding: 20px 0 40px 0;
             width: 100%;
         }
         .carousel-track {
             display: flex;
             gap: 30px;
-            width: max-content; /* 中身の幅に合わせる */
-            /* 25秒かけて半分（1セット分）移動するアニメーション */
-            animation: marqueeScroll 25s linear infinite;
+            width: max-content; 
         }
-        /* マウスを乗せたら動きを止める */
-        .carousel-track:hover {
-            animation-play-state: paused;
-        }
-        @keyframes marqueeScroll {
-            0% { transform: translateX(0); }
-            /* gapの半分(-15px)を含めてちょうど1セット分ずらす */
-            100% { transform: translateX(calc(-50% - 15px)); }
-        }
-
         .employee-card {
             flex: 0 0 auto;
             width: 300px;
@@ -216,10 +199,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
             text-align: left;
             overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        .employee-card:hover {
-            transform: translateY(-5px);
         }
         .card-image {
             width: 100%;
@@ -311,7 +290,7 @@
         .cta-btn-group { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
         .cta-btn-group a { display: flex; align-items: center; justify-content: center; width: 300px; padding: 16px 20px; border-radius: 8px; color: #fff; font-weight: 700; transition: opacity 0.3s; position: relative; }
         .cta-btn-group a:hover { opacity: 0.8; }
-        .btn-orange { background-color: #f0a038; }
+        .btn-orange { background-color: #F27D52; } /* コーラルオレンジに変更 */
         .btn-green { background-color: #1f9d55; }
         .cta-btn-group .arrow { position: absolute; right: 20px; width: 24px; height: 24px; background: rgba(255,255,255,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
         
@@ -360,7 +339,7 @@
             <div class="logo">
                 <img src="logo.png" alt="DirectWave" class="logo-img">
             </div>
-            <a href="#cta" class="btn-primary pc-only" style="padding: 12px 28px; font-size: 0.85rem;">カジュアル面談はこちら</a>
+            <a href="#cta" class="btn-primary pc-only">カジュアル面談はこちら</a>
         </div>
         <div class="sp-header-btns sp-only">
             <a href="#cta" class="btn-orange">カジュアル面談へ <span>&gt;</span></a>
@@ -424,21 +403,21 @@
                     <span class="en-label" style="font-size:0.75rem;">First Step</span>
                     <h3>ITサポート・<br>システム運用</h3>
                     <p>現場のサポートからスタート. 障害対応・ユーザー問い合わせ対応を通じて, ITの全体像が自然に見えてくる. 丁寧さと誠実さが一番活きる時期.</p>
-                    <span class="path-badge">研修1週間 → 現場デビュー</span>
+                    <span class="path-badge">研修 → 現場デビュー</span>
                 </div>
                 <div class="path-card reveal" style="transition-delay: 0.1s;">
                     <div class="card-num">02</div>
                     <span class="en-label" style="font-size:0.75rem;">Next Level</span>
                     <h3>サーバー・<br>クラウドインフラ</h3>
                     <p>AWSやAzureを「設計の意図ごと」理解できるレベルへ. サポートの経験があるから, インフラの学習スピードが格段に上がります.</p>
-                    <span class="path-badge">〜 1年目の目標</span>
+                    <span class="path-badge">〜 数年後</span>
                 </div>
                 <div class="path-card reveal" style="transition-delay: 0.2s;">
                     <div class="card-num">03</div>
                     <span class="en-label" style="font-size:0.75rem;">Engineer</span>
                     <h3>業務改善・<br>自動化・開発</h3>
                     <p>現場の問題をコードで解けるエンジニアへ. ここまでの経験が土台にあるから, 開発だけ知っている人とは問題解決の深さが違います.</p>
-                    <span class="path-badge">2〜3年後のゴール</span>
+                    <span class="path-badge">ゴール</span>
                 </div>
             </div>
         </div>
@@ -656,16 +635,49 @@
         });
 
         // =========================================
-        // 社員紹介の無限スクロールマーキー化
+        // 社員紹介のJS制御 (1枚ずつ止まって進む無限スライダー)
         // =========================================
         const carouselTrack = document.getElementById('js-carousel-track');
         if (carouselTrack) {
-            // CSSアニメーションでループさせるため、要素をそのままコピーして後ろにくっつける
             const cards = Array.from(carouselTrack.children);
+            const totalOriginalCards = cards.length;
+
+            // 無限ループ用にクローンを作成して末尾に追加
             cards.forEach(card => {
                 const clone = card.cloneNode(true);
                 carouselTrack.appendChild(clone);
             });
+
+            let currentIndex = 0;
+            let isHovered = false;
+
+            // マウスを乗せている間は一時停止する
+            carouselTrack.addEventListener('mouseenter', () => isHovered = true);
+            carouselTrack.addEventListener('mouseleave', () => isHovered = false);
+
+            setInterval(() => {
+                if (isHovered) return; // ホバー中はスキップ
+
+                // カードの幅(px) ＋ 余白(30px) を計算
+                const cardWidth = carouselTrack.children[0].offsetWidth;
+                const gap = 30;
+                const moveAmount = cardWidth + gap;
+
+                currentIndex++;
+                
+                // アニメーションをオンにして左へスライド
+                carouselTrack.style.transition = 'transform 0.5s ease-in-out';
+                carouselTrack.style.transform = `translateX(-${currentIndex * moveAmount}px)`;
+
+                // 一巡したら、こっそり最初の位置に戻す（無限ループ処理）
+                if (currentIndex === totalOriginalCards) {
+                    setTimeout(() => {
+                        carouselTrack.style.transition = 'none'; // アニメーションをオフ
+                        carouselTrack.style.transform = 'translateX(0)'; // 0地点へ瞬時に戻る
+                        currentIndex = 0;
+                    }, 500); // 移動(0.5s)が終わった直後に実行
+                }
+            }, 3000); // 3000ミリ秒(3秒)ごとに動く
         }
     </script>
 </body>
