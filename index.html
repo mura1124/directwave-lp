@@ -362,9 +362,9 @@
             section { padding: 80px 0; }
             .header-inner { padding: 12px 5%; }
 
-           /* フッター固定ボタン */
+          /* フッター固定ボタン */
             .sp-fixed-footer {
-                display: flex;
+                display: flex !important; /* ★ここを変更：sp-onlyの縦並び命令を打ち消す */
                 flex-direction: row; /* 強制的に横並び（左右）にする */
                 position: fixed;
                 bottom: 0;
