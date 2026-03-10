@@ -213,12 +213,21 @@
         .path-badge { display: inline-block; padding: 8px 24px; background: var(--c-blue-light); color: var(--c-blue); font-size: 0.8rem; font-weight: 700; border-radius: 50px; }
 
         /* =========================================
-           Employee Carousel
-           ========================================= */
+            Employee Carousel (Swipe & Drag Support)
+        ========================================= */
         .employee-carousel {
-            background-color: var(--c-bg-gray);
-            text-align: center;
-            overflow-x: hidden; 
+        /* ★変更前：暗いグレー */
+        /* background-color: #2b2b2b; */
+    
+        /* ★変更後：都会的で洗練された薄いプレミアムグレー */
+        /* わずかに青みを入れることで、クールで都会的な「おしゃれ」な質感にしています */
+        background-color: #e2e8f0; 
+    
+        /* もしテクスチャ感が必要であれば、極めて薄いザラザラした画像を指定 */
+        /* background-image: url("bg-texture-light.png"); */ 
+
+        text-align: center;
+        overflow-x: hidden; 
         }
         .carousel-container {
             position: relative;
@@ -263,12 +272,13 @@
             margin-bottom: 0.5rem;
             flex-wrap: wrap;
         }
-        .card-name {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--c-text-main);
-            margin-bottom: 0;
-        }
+     .card-name {
+    font-size: 1.3rem;
+    font-weight: 800;
+    /* ★変更前：#ffffff (白) */
+    color: var(--c-text-main); /* ★メインの暗い色に戻す */
+    margin-bottom: 0;
+}
         .card-badge {
             display: inline-block;
             background-color: var(--c-orange);
@@ -279,11 +289,12 @@
             font-weight: 700;
             margin-bottom: 0;
         }
-        .card-description {
-            font-size: 0.95rem;
-            color: var(--c-text-sub);
-            line-height: 1.6;
-        }
+      .card-description {
+    font-size: 0.95rem;
+    /* ★変更前：#e0e0e0 (薄いグレー) */
+    color: var(--c-text-sub); /* ★サブの暗い色に戻す */
+    line-height: 1.6;
+}
 
         /* =========================================
            Target & Journey
