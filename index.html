@@ -139,19 +139,16 @@
             animation: fadeIn 3.5s cubic-bezier(0.16, 1, 0.3, 1) 1.1s forwards;
         }
 
-
-       /* =========================================
-           Image Band (写真の帯・右から左へ無限ループ)
+        /* =========================================
+           Image Band (写真の帯)
            ========================================= */
         .image-band-wrapper {
             width: 100%;
             overflow: hidden;
-            position: relative; /* ★追加：疑似要素の基準にする */
+            position: relative; 
             background-color: var(--c-bg-gray);
             line-height: 0;
         }
-
-        /* ★新規追加：画像全体に重ねる半透明のレイヤー（オーバーレイ） */
         .image-band-wrapper::after {
             content: '';
             position: absolute;
@@ -159,26 +156,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(15, 15, 25, 0.5);/* ★色：var(--c-blue)を半透明（40%）にして重ねる */
-            pointer-events: none; /* ★重要：下の画像を触れるようにする */
-            z-index: 1; /* ★重要：画像の上に重ねる */
+            background-color: rgba(15, 15, 25, 0.5);
+            pointer-events: none; 
+            z-index: 1; 
         }
-
         .image-band {
             display: flex;
             width: 200%; 
             animation: marqueeLeft 35s linear infinite; 
-            position: relative; /* ★追加：疑似要素との前後関係を正しくする */
-            z-index: 0; /* ★重要：疑似要素の下にする */
+            position: relative; 
+            z-index: 0; 
         }
-        /* ...以下略... */
         .image-band img {
             width: 12.5%; 
             height: 320px;
             object-fit: cover;
         }
-        
-        /* ▼ ここを書き換え：0からスタートして -50% へ移動させる */
         @keyframes marqueeLeft {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
@@ -231,13 +224,12 @@
             position: relative;
             overflow: hidden; 
             padding: 20px 0 40px 0;
-            width: 100%;
-            max-width: 960px; 
+            width: 800px; /* 240px × 3枚 + 40px × 2箇所 = 800px */
             margin: 0 auto;
         }
         .carousel-track {
             display: flex;
-            gap: 30px;
+            gap: 40px; /* カード間の余白 */
             width: max-content; 
             cursor: grab; 
             user-select: none;
@@ -248,18 +240,18 @@
         }
         
         .employee-card {
-            flex: 0 0 auto;
-            width: 300px;
+            flex: 0 0 240px; /* カード幅を固定 */
             background-color: transparent; 
             box-shadow: none;
             text-align: left;
         }
         .card-image {
             width: 100%;
-            height: 220px;
+            height: 180px; /* 高さを小さく */
             object-fit: cover;
             border-radius: 16px;
             pointer-events: none; 
+            filter: brightness(0.7); /* 少し暗くする */
         }
         .card-content {
             padding: 16px 0;
@@ -380,10 +372,10 @@
             section { padding: 80px 0; }
             .header-inner { padding: 12px 5%; }
 
-          /* フッター固定ボタン */
+            /* フッター固定ボタン */
             .sp-fixed-footer {
-                display: flex !important; /* ★ここを変更：sp-onlyの縦並び命令を打ち消す */
-                flex-direction: row; /* 強制的に横並び（左右）にする */
+                display: flex !important; 
+                flex-direction: row; 
                 position: fixed;
                 bottom: 0;
                 left: 0;
@@ -392,20 +384,20 @@
                 box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
             }
             .sp-fixed-footer a {
-                width: 50%; /* 確実に画面の半分（50%）ずつの幅にする */
+                width: 50%; 
                 display: flex;
-                justify-content: space-between; /* テキストを左、矢印を右に離して配置（画像準拠） */
+                justify-content: space-between; 
                 align-items: center;
                 padding: 16px 20px;
                 color: #fff;
                 font-weight: 700;
-                font-size: clamp(0.8rem, 3.5vw, 0.95rem); /* 画面が狭くても文字がはみ出ないように自動調整 */
+                font-size: clamp(0.8rem, 3.5vw, 0.95rem); 
                 text-decoration: none;
                 box-sizing: border-box;
             }
             .sp-fixed-footer .btn-orange {
                 background-color: var(--c-orange);
-                border-right: 1px solid rgba(255, 255, 255, 0.7); /* オレンジと緑の間の「白い区切り線」を追加 */
+                border-right: 1px solid rgba(255, 255, 255, 0.7); 
             }
             .sp-fixed-footer .btn-green {
                 background-color: var(--c-green);
@@ -415,22 +407,18 @@
                 font-size: 1.2rem;
             }
 
-            /* --- 写真帯 スマホ設定 --- */
-            .image-band {
-                width: 400%; /* スマホは画面内に2枚表示のため、2セット(8枚)で400% */
-            }
-            .image-band img {
-                height: 180px;
-            }
+            /* 写真帯 スマホ設定 */
+            .image-band { width: 400%; }
+            .image-band img { height: 180px; }
 
-            /* --- スマホ時 カルーセル設定 --- */
+            /* スマホ時 カルーセル設定 */
             .carousel-container {
                 width: 280px; 
                 padding: 10px 0 30px 0;
                 margin: 0 auto; 
                 overflow: visible; 
             }
-            .employee-card { width: 280px; }
+            .employee-card { flex: 0 0 280px; }
             .carousel-track { gap: 30px; }
 
             .cta-card { padding: 40px 20px; }
@@ -515,7 +503,7 @@
                 <span class="en-label">Career Path</span>
                 <h2 class="section-title">成長のステップ</h2>
                 <p style="font-size: 1.05rem; color: var(--c-text-sub); line-height: 1.8; font-weight: 500; max-width: 700px; margin: 0 auto;">
-                   「何に向いているかわからない」という方でも大丈夫。<br class="pc-only">
+                    「何に向いているかわからない」という方でも大丈夫。<br class="pc-only">
                     まずは基礎からスタートし、あなたの適性に合った道を見つけていく<br class="pc-only">「モデルケース」をご紹介します。
                 </p>
             </div>
@@ -794,14 +782,13 @@
         });
 
         // =========================================
-        // 社員紹介カルーセル (スワイプ・ドラッグ・無限ループ対応)
+        // 社員紹介カルーセル
         // =========================================
         const carouselTrack = document.getElementById('js-carousel-track');
         if (carouselTrack) {
             const originalCards = Array.from(carouselTrack.children);
             const totalCards = originalCards.length;
             
-            // 前後にクローンを追加して無限ループの土台を作る
             originalCards.forEach(card => {
                 const clone = card.cloneNode(true);
                 carouselTrack.appendChild(clone);
@@ -811,30 +798,28 @@
                 carouselTrack.insertBefore(clone, carouselTrack.firstChild);
             });
 
-            let currentIndex = totalCards; // 本物の先頭からスタート
+            let currentIndex = totalCards; 
             let isHovered = false;
             let autoPlayInterval;
             let cardWidth, gap, moveAmount;
 
             function updateDimensions() {
                 cardWidth = carouselTrack.children[0].offsetWidth;
-                gap = 30; 
+                // スマホ時はgapを30、PC時は40として動的に計算
+                gap = window.innerWidth <= 768 ? 30 : 40; 
                 moveAmount = cardWidth + gap;
                 carouselTrack.style.transition = 'none';
                 carouselTrack.style.transform = `translateX(-${currentIndex * moveAmount}px)`;
             }
             
-            // 初回計算
             updateDimensions();
             window.addEventListener('resize', updateDimensions);
 
             function slideTo(index) {
                 currentIndex = index;
-                // 止まる瞬間に減速する滑らかな動き
                 carouselTrack.style.transition = 'transform 3.2s cubic-bezier(0.16, 1, 0.3, 1)';
                 carouselTrack.style.transform = `translateX(-${currentIndex * moveAmount}px)`;
 
-                // アニメーション完了後にループ境界をチェックして裏でジャンプ
                 setTimeout(() => {
                     if (currentIndex >= totalCards * 2) {
                         carouselTrack.style.transition = 'none';
@@ -874,7 +859,6 @@
                 const currentPos = e.type.includes('mouse') ? e.pageX : e.touches[0].clientX;
                 const diff = currentPos - startPos;
 
-                // 50px以上スワイプ（フリック）されたら反応
                 if (diff > 50) {
                     slidePrev();
                     isDragging = false;
@@ -889,7 +873,6 @@
                 startAutoPlay();
             }
 
-            // イベントリスナー登録
             carouselTrack.addEventListener('mousedown', touchStart);
             carouselTrack.addEventListener('mousemove', touchMove);
             carouselTrack.addEventListener('mouseup', touchEnd);
@@ -899,7 +882,6 @@
             carouselTrack.addEventListener('touchmove', touchMove, { passive: true });
             carouselTrack.addEventListener('touchend', touchEnd);
 
-            // PCホバーで自動再生停止
             carouselTrack.addEventListener('mouseenter', () => isHovered = true);
             carouselTrack.addEventListener('mouseleave', () => isHovered = false);
 
