@@ -6,7 +6,6 @@
     <title>新卒採用情報（専門卒） | DirectWave</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* トップページ・大卒用と完全に同一のカラー・フォント設定 */
         :root {
             --c-blue: #1848b8;
             --c-blue-light: #eff6ff;
@@ -50,13 +49,19 @@
         .metric-val span { font-size: 1.1rem; font-family: var(--font-jp); font-weight: 700; }
         .metric-label { font-size: 0.95rem; font-weight: 700; color: var(--c-text-main); }
 
-        /* Feature Cards */
+        /* Feature Cards (6カラムに拡張) */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         @media(max-width: 768px){ .grid-2 { grid-template-columns: 1fr; } }
-        .feature-card { background: var(--c-bg-gray); padding: 30px; border-radius: 12px; border: 1px solid var(--c-border); }
-        .feature-card h4 { font-size: 1.1rem; font-weight: 800; color: var(--c-blue); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
-        .feature-card h4::before { content: ''; display: inline-block; width: 6px; height: 16px; background: var(--c-orange); border-radius: 4px; }
-        .feature-card p { font-size: 0.95rem; color: var(--c-text-sub); line-height: 1.6; }
+        .feature-card { background: var(--c-bg-gray); padding: 30px; border-radius: 12px; border: 1px solid var(--c-border); display: flex; flex-direction: column; }
+        .feature-card h4 { font-size: 1.05rem; font-weight: 800; color: var(--c-blue); margin-bottom: 12px; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+        .feature-card h4::before { content: ''; display: inline-block; width: 6px; height: 16px; background: var(--c-orange); border-radius: 4px; margin-top: 4px; flex-shrink: 0; }
+        .feature-card p { font-size: 0.95rem; color: var(--c-text-sub); line-height: 1.6; margin-bottom: 0; }
+        
+        /* イベント用のリストスタイル */
+        .event-list { list-style: none; margin-top: 8px; font-size: 0.9rem; color: var(--c-text-sub); }
+        .event-list li { margin-bottom: 10px; padding-left: 12px; position: relative; line-height: 1.5; }
+        .event-list li::before { content: '・'; position: absolute; left: 0; top: 0; color: var(--c-orange); }
+        .event-list li:last-child { margin-bottom: 0; }
 
         /* Training Timeline */
         .timeline { border-left: 2px solid var(--c-border); padding-left: 40px; margin-left: 15px; }
@@ -80,7 +85,6 @@
         .info-table th, .info-table td { padding: 20px 15px; border-bottom: 1px solid var(--c-border); text-align: left; vertical-align: top; }
         .info-table th { width: 25%; background: var(--c-bg-gray); color: var(--c-text-main); font-weight: 700; font-size: 0.95rem; }
         .info-table td { width: 75%; font-size: 0.95rem; color: var(--c-text-main); }
-        .info-table ul { list-style: disc; margin-left: 20px; }
         .uni-list { font-size: 0.85rem; color: var(--c-text-sub); line-height: 1.6; max-height: 150px; overflow-y: auto; padding: 10px; background: #fff; border: 1px solid var(--c-border); border-radius: 4px; }
         @media(max-width: 768px) { 
             .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; } 
@@ -109,7 +113,7 @@
         <div class="container">
             <span class="page-sub">＼ 学んだ知識を、現場で活きる本物のスキルへ ／</span>
             <h1 class="page-title">2026年度 新卒採用（専門卒）</h1>
-            <p class="page-desc">専門学校で培った基礎を土台に、さらなるステップアップを。<br>充実した研修と働きやすい環境で、あなたのエンジニアとしてのキャリアを支援します。</p>
+            <p class="page-desc">専門学校で培った基礎を土台に、さらなるステップアップを。<br>充実した研修と働きやすい環境で、あなたのキャリアを支援します。</p>
         </div>
     </div>
 
@@ -128,27 +132,40 @@
                     <div class="metric-label">平均勤続年数</div>
                 </div>
                 <div class="metric-card">
-                    <div class="metric-val">77<span>種類</span></div>
+                    <div class="metric-val">57<span>種類</span></div>
                     <div class="metric-label">資格取得支援対象</div>
                 </div>
             </div>
 
             <div class="grid-2">
                 <div class="feature-card">
-                    <h4>奨学金返還支援制度</h4>
-                    <p>年間24万円、最大3年間で合計72万円の奨学金返還を会社が補助。若手社員の経済的負担を軽減します。</p>
+                    <h4>残業代は全額支給</h4>
+                    <p>月間平均残業時間は7.6時間（2024年度）。プロジェクトにより異なりますが、とても少ないです♪ もちろん残業代は全額支給します！</p>
                 </div>
                 <div class="feature-card">
-                    <h4>独自の医療保険制度</h4>
-                    <p>通常の健康保険とは別に、保険料を会社が全額負担する独自の医療保険に加入。手術や入院時に給付金が支給されます。</p>
+                    <h4>借上社宅入居可</h4>
+                    <p>埼玉県三郷市にある借上社宅に入居できます。間取りは1K～2DKで、割安の家賃でお住まいいただくことが可能です。</p>
+                </div>
+                <div class="feature-card">
+                    <h4>独自の医療保険＆健康診断</h4>
+                    <p>会社が保険料を全額負担する独自の医療保険があり、手術や入院時に給付金が支給されます。基本健診のほか人間ドックや婦人科検査も受診可能です。</p>
                 </div>
                 <div class="feature-card">
                     <h4>資格取得支援（対象57種類）</h4>
-                    <p>当社指定のIT資格試験に合格した方には、祝い金と難易度に応じた資格手当（月額1,500円～12,000円）を毎月支給します。</p>
+                    <p>当社指定の57種類のIT資格試験に合格した方には、祝い金と、難易度に応じた資格手当を毎月支給します。</p>
                 </div>
                 <div class="feature-card">
-                    <h4>借上社宅制度</h4>
-                    <p>埼玉県三郷市にある借上社宅（1K～2DK）に、割安の家賃で入居可能です。遠方からの就職もサポートします。</p>
+                    <h4>保養施設やスポーツクラブが割安に</h4>
+                    <p>箱根、湯沢、那須など全国40ヶ所のリゾートホテルに安価で宿泊可能。サッカーやテニスなどのスポーツ施設、レストランも会員価格で利用できます。</p>
+                </div>
+                <div class="feature-card">
+                    <h4>好評な社内イベント（全て自由参加）</h4>
+                    <p style="margin-bottom: 8px;">強制参加は一切ありません。個人のペースを尊重します。</p>
+                    <ul class="event-list">
+                        <li><strong>社員旅行：</strong>年に一度企画。過去には台湾、北海道、沖縄などへ。</li>
+                        <li><strong>忘年会：</strong>毎年12月。軽音楽部ライブやボーリング大会等。</li>
+                        <li><strong>帰社日：</strong>偶数月の第3金曜日。軽食や飲み物を用意し、気軽に親睦を深めています。</li>
+                    </ul>
                 </div>
             </div>
         </div>
