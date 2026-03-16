@@ -20,6 +20,7 @@
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; } /* スムーズスクロールを追加 */
         body { font-family: var(--font-jp); color: var(--c-text-main); line-height: 1.8; background-color: var(--c-bg-white); -webkit-font-smoothing: antialiased; }
         a { text-decoration: none; color: inherit; }
         .container { max-width: 960px; margin: 0 auto; padding: 0 5%; }
@@ -99,13 +100,86 @@
 
         .sp-fixed-cta { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95); padding: 12px 16px 20px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 999; }
         .sp-fixed-cta .btn-main { width: 100%; padding: 14px; font-size: 1rem; box-shadow: none; }
-        @media (max-width: 768px) { body { padding-bottom: 80px; } .sp-fixed-cta { display: block; } }
+        
+        /* =========================================
+           Footer
+           ========================================= */
+        .site-footer {
+            background-color: var(--c-bg-white);
+            border-top: 1px solid var(--c-border);
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-logo {
+            height: 24px;
+            width: auto;
+            margin-bottom: 12px;
+        }
+        .footer-info {
+            text-align: left;
+        }
+        .footer-info p {
+            font-size: 0.85rem;
+            color: var(--c-text-sub);
+            font-weight: 500;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--c-text-sub);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--c-blue);
+        }
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-family: var(--font-en);
+        }
+
+        @media (max-width: 768px) { 
+            body { padding-bottom: 80px; } 
+            .sp-fixed-cta { display: block; } 
+            
+            /* フッター スマホ設定 */
+            .site-footer {
+                /* 固定ボタンの高さ分、下部に余白を設ける */
+                padding: 40px 0 100px; 
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .footer-info {
+                text-align: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <img src="logo.png" alt="DirectWave" class="logo-img">
+        <a href="#" class="logo" aria-label="ページのトップへ戻る">
+            <img src="logo.png" alt="DirectWave" class="logo-img">
+        </a>
         <a href="index.html" class="back-link"><span>&lt;</span> トップページへ</a>
     </header>
 
@@ -286,6 +360,24 @@
             </div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <img src="logo.png" alt="DirectWave" class="footer-logo">
+                    <p>株式会社ダイレクトウェイヴ</p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="https://www.directwave.co.jp/" target="_blank" rel="noopener noreferrer">コーポレートサイト</a></li>
+                    <li><a href="https://www.directwave.co.jp/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <small>&copy; DirectWave Co., Ltd. All Rights Reserved.</small>
+            </div>
+        </div>
+    </footer>
 
     <div class="sp-fixed-cta">
         <a href="https://calendar.app.google/PNHTWwztswKm4jrF9" class="btn-main" target="_blank">説明会・面談を予約する &gt;</a>
