@@ -360,16 +360,15 @@
             border: 1px solid var(--c-border);
         }
         .recruit-box-title {
-            /* 以前の1.1remから大幅に拡大し、スマホでは適度に縮むよう設定 */
             font-size: clamp(1.4rem, 4vw, 1.8rem); 
-            font-weight: 900; /* 一番太いウェイトにして力強さを出す */
+            font-weight: 900; 
             color: var(--c-blue);
             margin-bottom: 24px;
-            letter-spacing: 0.08em; /* 文字間を広げて視認性と高級感を高める */
+            letter-spacing: 0.08em; 
             text-align: center;
         }
         
-        /* 中途・その他のタイトルは新卒より目立たせない（ヒエラルキーの維持） */
+        /* 中途・その他のタイトルは新卒より目立たせない */
         .recruit-box.secondary .recruit-box-title {
             font-size: 1.1rem;
             font-weight: 700;
@@ -396,21 +395,19 @@
             box-shadow: 0 6px 20px rgba(24, 72, 184, 0.3); 
         }
         
-        /* 2段組みテキストのレイアウト調整 */
         .cta-text-wrapper {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
             gap: 4px;
-            overflow: hidden; /* はみ出し防止 */
+            overflow: hidden; 
         }
         .cta-sub {
-            /* clampを使って、狭いときは自動で少し文字を小さくする */
             font-size: clamp(0.6rem, 1.5vw, 0.75rem);
             font-weight: 700;
             color: #93c5fd; 
-            letter-spacing: 0.02em; /* 字間を少し詰めてスッキリさせる */
-            white-space: nowrap; /* ★勝手な改行を強制的に防ぐ */
+            letter-spacing: 0.02em; 
+            white-space: nowrap; 
         }
         .cta-main {
             font-size: clamp(1rem, 2vw, 1.15rem);
@@ -423,7 +420,7 @@
             width: 32px; height: 32px; background: rgba(255,255,255,0.15); color: #fff; 
             border-radius: 50%; display: flex; align-items: center; justify-content: center; 
             font-size: 0.9rem; transition: all 0.3s; flex-shrink: 0;
-            margin-left: 8px; /* テキストと矢印の間に最低限の余白を確保 */
+            margin-left: 8px; 
         }
         .btn-primary-cta:hover .arrow-circle { 
             transform: translateX(4px); 
@@ -450,6 +447,55 @@
            ========================================= */
         .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
         .reveal.is-active { opacity: 1; transform: translateY(0); }
+
+        /* =========================================
+           Footer
+           ========================================= */
+        .site-footer {
+            background-color: var(--c-bg-white);
+            border-top: 1px solid var(--c-border);
+            padding: 60px 0 20px;
+            text-align: center;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-logo {
+            height: 24px;
+            width: auto;
+            margin-bottom: 12px;
+        }
+        .footer-info {
+            text-align: left;
+        }
+        .footer-info p {
+            font-size: 0.85rem;
+            color: var(--c-text-sub);
+            font-weight: 500;
+        }
+        .footer-links {
+            display: flex;
+            gap: 24px;
+        }
+        .footer-links a {
+            font-size: 0.85rem;
+            color: var(--c-text-sub);
+            font-weight: 700;
+            transition: color 0.3s;
+        }
+        .footer-links a:hover {
+            color: var(--c-blue);
+        }
+        .footer-copyright {
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-family: var(--font-en);
+        }
 
         /* =========================================
            Media Queries (スマホ用設定)
@@ -510,7 +556,6 @@
 
             .cta-card { padding: 40px 20px; }
             .cta-title { font-size: 1.5rem; }
-            /* CTAボタンのスマホ文字サイズ調整 */
             .cta-sub {
                 font-size: 0.65rem;
             }
@@ -520,10 +565,26 @@
             .btn-primary-cta .arrow-circle {
                 width: 28px; height: 28px; font-size: 0.8rem;
             }
-            /* CTAボタン幅の最適化 */
             .cta-btn-group a { width: 100%; }
             .recruit-btn-grid { grid-template-columns: 1fr; gap: 12px; }
             .recruit-box { padding: 20px; }
+
+            /* フッター スマホ設定 */
+            .site-footer {
+                padding: 40px 0 100px; 
+            }
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+                gap: 30px;
+            }
+            .footer-info {
+                text-align: center;
+            }
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
         }
     </style>
 </head>
@@ -531,9 +592,9 @@
 
     <header>
         <div class="header-inner">
-            <div class="logo">
+            <a href="#" class="logo" aria-label="ページのトップへ戻る">
                 <img src="logo.png" alt="DirectWave" class="logo-img">
-            </div>
+            </a>
             <a href="https://forms.gle/5FM7JmRQVWt23pDn6" class="btn-primary pc-only">カジュアル面談はこちら</a>
         </div>
     </header>
@@ -660,9 +721,9 @@
                     <div class="card-content">
                         <div class="card-header-flex">
                             <p class="card-name">K.T さん</p>
-                            <span class="card-badge">システム開発部 リーダー</span>
+                            <span class="card-badge">営業本部</span>
                         </div>
-                        <p class="card-description">入りたての頃は実力不足があり悩むこともありましたが、チーム内の先輩に色々教えて頂き、理解することが出来ました。わからない事があれば気軽に相談できる環境があることで安心できました。</p>
+                        <p class="card-description">技術者から営業へキャリアチェンジ　趣味は</p>
                     </div>
                 </div>
                 
@@ -834,6 +895,24 @@
             </div>
         </div>
     </section>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-inner">
+                <div class="footer-info">
+                    <img src="logo.png" alt="DirectWave" class="footer-logo">
+                    <p>株式会社ダイレクトウェイヴ</p>
+                </div>
+                <ul class="footer-links">
+                    <li><a href="https://www.directwave.co.jp/" target="_blank" rel="noopener noreferrer">コーポレートサイト</a></li>
+                    <li><a href="https://www.directwave.co.jp/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></li>
+                </ul>
+            </div>
+            <div class="footer-copyright">
+                <small>&copy; DirectWave Co., Ltd. All Rights Reserved.</small>
+            </div>
+        </div>
+    </footer>
 
     <div class="sp-fixed-footer sp-only">
         <a href="https://calendar.app.google/PNHTWwztswKm4jrF9" class="btn-orange" target="_blank">カジュアル面談へ <span>&gt;</span></a>
