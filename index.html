@@ -253,38 +253,52 @@
             pointer-events: none; 
             filter: brightness(0.7); 
         }
-        .card-content {
-            padding: 16px 0;
-        }
-        .card-header-flex {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 0.5rem;
-            flex-wrap: wrap;
-        }
-        .card-name {
-            font-size: 1.3rem;
-            font-weight: 800;
-            color: var(--c-text-main); 
-            margin-bottom: 0;
-        }
-        .card-badge {
-            display: inline-block;
-            background-color: var(--c-orange);
-            color: #fff;
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-bottom: 0;
-        }
-        .card-description {
-            font-size: 0.95rem;
-            color: var(--c-text-sub); 
-            line-height: 1.6;
-        }
+        /* --- 社員紹介カードの修正 --- */
+.card-content {
+    padding: 20px 0; /* 少し余裕を持たせる */
+}
 
+.card-header-flex {
+    display: flex;
+    flex-direction: column; /* 縦並びに変更して横幅の競合を避ける */
+    align-items: flex-start;
+    gap: 8px; /* 名前とバッジの隙間 */
+    margin-bottom: 12px;
+}
+
+.card-name {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--c-text-main);
+    line-height: 1.2;
+}
+
+.card-badge {
+    display: inline-block;
+    background-color: var(--c-orange);
+    color: #fff;
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-size: 0.7rem; /* 少し小さくして可読性を上げる */
+    font-weight: 700;
+    white-space: nowrap; /* 内部での改行を絶対に禁止 */
+    letter-spacing: 0.05em;
+    box-shadow: 0 2px 4px rgba(242, 125, 82, 0.2);
+}
+
+.card-description {
+    font-size: 0.9rem;
+    color: var(--c-text-sub);
+    line-height: 1.6;
+    /* 説明文が長くなっても高さが揃うよう最小高さを設定（任意） */
+    min-height: 3.2em;
+}
+
+/* スマホ時の微調整 */
+@media (max-width: 768px) {
+    .card-name { font-size: 1.15rem; }
+    .card-badge { font-size: 0.65rem; }
+}
         /* =========================================
            Target & Journey
            ========================================= */
@@ -710,7 +724,7 @@
                     <div class="card-content">
                         <div class="card-header-flex">
                             <p class="card-name">Y.R さん</p>
-                            <span class="card-badge">システムソリューション部 開発1G</span>
+                            <span class="card-badge">開発1G</span>
                         </div>
                         <p class="card-description">IT業界未経験で入社後、運用業務経験を経て、現在はショッピングサイトの保守開発(Java,SQL)。</p>
                     </div>
@@ -721,7 +735,7 @@
                     <div class="card-content">
                         <div class="card-header-flex">
                             <p class="card-name">K.M さん</p>
-                            <span class="card-badge">システムソリューション部インフラ2Gリーダー</span>
+                            <span class="card-badge">インフラ2Gリーダー</span>
                         </div>
                         <p class="card-description">銀行向けサーバ構築(Windows Server,Shell Script)</p>
                     </div>
@@ -742,7 +756,7 @@
                     <img src="staff3.jpg" alt="H.K" class="card-image" />
                     <div class="card-content">
                         <div class="card-header-flex">
-                            <p class="card-name"> I.S さん</p>
+                            <p class="card-name"> I.S さん<br></p>
                             <span class="card-badge">システム開発部</span>
                         </div>
                         <p class="card-description">クラウド型の配車システム開発 Java、Flex</p>
