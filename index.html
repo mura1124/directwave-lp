@@ -63,7 +63,19 @@
             position: relative; z-index: 2;
         }
         .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(242, 125, 82, 0.4); }
-
+        /* メインCTAボタン（recruitページと統一） */
+    .btn-main { 
+    display: inline-flex; align-items: center; justify-content: center; 
+    background: var(--c-orange); color: #fff; 
+    padding: 16px 40px; border-radius: 50px; 
+    font-weight: 700; font-size: 1.05rem; 
+    transition: 0.3s; text-decoration: none;
+    box-shadow: 0 4px 15px rgba(242, 125, 82, 0.3); 
+}
+.btn-main:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 25px rgba(242, 125, 82, 0.4); 
+}
         /* レスポンシブ表示用ユーティリティ */
         .pc-only { display: block; }
         .sp-only { display: none; }
@@ -884,9 +896,9 @@
             <div class="cta-card">
                 <h2 class="cta-title">カジュアル面談はこちら</h2>
                 <p class="cta-desc">履歴書はもちろん不要です。<br class="pc-only">あなたが聞きたいことだけを質問する時間でも構いません。まずはテキストでの相談からでもOKです。<br class="pc-only">就業後でも対応しています！</p>
-                <div class="cta-btn-group">
-                    <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-orange" target="_blank" rel="noopener noreferrer">カジュアル面談へ <span class="arrow">&gt;</span></a>
-                </div>
+              <div style="display: flex; justify-content: center;">
+                    <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-main" target="_blank" rel="noopener noreferrer">カジュアル面談へ &gt;</a>
+            </div>
             </div>
             
             <div class="cta-card" style="margin-bottom: 0;">
