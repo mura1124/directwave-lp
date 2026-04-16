@@ -538,31 +538,23 @@
             .header-inner { padding: 12px 5%; }
 
             /* フッター固定ボタン */
-            .sp-fixed-footer {
-                display: flex !important; 
-                flex-direction: row; 
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                z-index: 1000;
-                box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            }
-            .sp-fixed-footer a {
-                width: 100%; 
-                display: flex;
-                justify-content: space-between; 
-                align-items: center;
-                padding: 16px 20px;
-                color: #fff;
-                font-weight: 700;
-                font-size: clamp(0.8rem, 3.5vw, 0.95rem); 
-                text-decoration: none;
-                box-sizing: border-box;
-            }
-            .sp-fixed-footer .btn-orange {
-                background-color: var(--c-orange);
-            }
+           .sp-fixed-footer {
+    display: block !important; 
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255,255,255,0.95);
+    padding: 12px 16px 20px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+    z-index: 999;
+}
+.sp-fixed-footer .btn-main {
+    width: 100%;
+    padding: 14px;
+    font-size: 1rem;
+    box-shadow: none;
+}
             .sp-fixed-footer a span { 
                 font-weight: normal; 
                 font-size: 1.2rem;
@@ -953,9 +945,9 @@
         </div>
     </footer>
 
-    <div class="sp-fixed-footer sp-only">
-        <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-orange" target="_blank" rel="noopener noreferrer">カジュアル面談へ <span>&gt;</span></a>
-    </div>
+   <div class="sp-fixed-footer sp-only">
+    <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-main" target="_blank" rel="noopener noreferrer">カジュアル面談へ &gt;</a>
+</div>
 
     <script>
         // フェードインアニメーション
