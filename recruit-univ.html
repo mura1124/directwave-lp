@@ -182,12 +182,11 @@
             }
         }
                 /* ここに追加 */
-.sp-only { display: none; }
-@media (max-width: 768px) {
-    .sp-only { display: inline !important; }
-    .cta-box h3 {
-        font-size: 1.1rem;
-    }
+        .sp-only { display: none; }
+        @media (max-width: 768px) {
+            .sp-only { display: inline !important; }
+        }
+        @media (max-width: 768px) {
     .cta-box p {
         text-align: left;
         font-size: 0.9rem;
@@ -372,7 +371,7 @@
             </table>
 
            <div class="cta-box">
-    <h3 style="font-size: 1.4rem; font-weight: 900; margin-bottom: 10px; color: var(--c-blue);">まずは、オンライン会社説明会へ</h3>
+    <h3 style="font-size: 1.4rem; font-weight: 900; margin-bottom: 10px; color: var(--c-blue);">まずは、<br class="sp-only">オンライン会社説明会へ</h3>
     <p style="color: var(--c-text-sub); margin-bottom: 25px; line-height: 2;">
         選考フロー：<br class="sp-only">
         ① オンライン説明会<br class="sp-only">
