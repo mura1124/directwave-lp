@@ -30,14 +30,33 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        body { font-family: var(--font-jp); color: var(--c-text-main); line-height: 1.8; background-color: var(--c-bg-white); -webkit-font-smoothing: antialiased; }
+        body { font-family: var(--font-jp); color: var(--c-text-main); line-height: 1.8; background-color: var(--c-bg-white); -webkit-font-smoothing: antialiased; padding-top: 76px; }
         a { text-decoration: none; color: inherit; }
+        img { max-width: 100%; height: auto; display: block; }
         .container { max-width: 960px; margin: 0 auto; padding: 0 5%; }
         section { padding: 80px 0; }
         
-        /* Header */
-        header { background: rgba(255, 255, 255, 0.98); padding: 15px 5%; position: sticky; top: 0; z-index: 100; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--c-border); }
-        .logo-img { height: 36px; }
+        /* Header（index.htmlと統一） */
+        header { 
+            background: rgba(255, 255, 255, 0.98); 
+            backdrop-filter: blur(10px);
+            position: fixed; 
+            top: 0; 
+            left: 0;
+            width: 100%;
+            z-index: 1000; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+        }
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .logo-img { height: 36px; width: auto; }
         .back-link { font-size: 0.9rem; font-weight: 700; color: var(--c-text-sub); display: flex; align-items: center; gap: 5px; transition: color 0.3s; }
         .back-link:hover { color: var(--c-blue); }
 
@@ -119,7 +138,8 @@
 
         /* スマホ用設定 */
         @media (max-width: 768px) {
-            body { padding-bottom: 80px; }
+            body { padding-bottom: 80px; padding-top: 60px; }
+            .header-inner { padding: 12px 5%; }
             .sp-fixed-cta { display: block; }
             .sp-only { display: inline !important; }
             .metrics-grid { grid-template-columns: 1fr; gap: 15px; }
@@ -139,10 +159,12 @@
 <body>
 
     <header>
-        <a href="#" class="logo" aria-label="ページのトップへ戻る">
-            <img src="logo.png" alt="DirectWave" class="logo-img">
-        </a>
-        <a href="index.html" class="back-link"><span>&lt;</span> トップページへ</a>
+        <div class="header-inner">
+            <a href="#" class="logo" aria-label="ページのトップへ戻る">
+                <img src="logo.png" alt="DirectWave" class="logo-img">
+            </a>
+            <a href="index.html" class="back-link"><span>&lt;</span> トップページへ</a>
+        </div>
     </header>
 
     <div class="page-header">
@@ -176,7 +198,7 @@
             <div class="grid-2">
                 <div class="feature-card">
                     <h4>残業代は全額支給</h4>
-                    <p>月間平均残業時間は7.6時間（2026年実績）。プロジェクトにより異なりますが、とても少ないです♪ もちろん残業代は全額支給します！</p>
+                    <p>月間平均残業時間は7.6時間（2025年実績）。プロジェクトにより異なりますが、とても少ないです♪ もちろん残業代は全額支給します！</p>
                 </div>
                 <div class="feature-card">
                     <h4>借上社宅入居可</h4>
@@ -251,7 +273,7 @@
             <div class="faq-list">
                 <div class="faq-item">
                     <button class="faq-q">残業は多いですか？</button>
-                    <div class="faq-a"><p>月間平均残業時間は7.6時間（2026年実績）と少なめです。プライベートと仕事の両立がしやすい環境です。</p></div>
+                    <div class="faq-a"><p>月間平均残業時間は7.6時間（2025年実績）と少なめです。プライベートと仕事の両立がしやすい環境です。</p></div>
                 </div>
                 <div class="faq-item">
                     <button class="faq-q">文系ですが大丈夫ですか？</button>
@@ -306,7 +328,7 @@
                 </td></tr>
                 <tr><th>アクセス・連絡先</th><td>
                     〒150-0013 東京都渋谷区恵比寿1-19-15 ウノサワ東急ビル7F<br>
-                    TEL：03-5475-1008（担当：上田）<br>
+                    TEL：03-5475-1008<br>
                     JR「恵比寿駅」東口 徒歩5分 ／ 東京メトロ「恵比寿駅」1番出口 徒歩5分
                 </td></tr>
             </table>

@@ -214,7 +214,7 @@
             stroke-dasharray: 691; stroke-dashoffset: 691; 
             transition: stroke-dashoffset 2.5s cubic-bezier(0.2, 0.8, 0.2, 1); 
         }
-        .donut-wrapper.is-active .donut-progress { stroke-dashoffset: 138.2; }
+        .donut-wrapper.is-active .donut-progress { stroke-dashoffset: 207.3; }
         .donut-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; }
         .donut-text .num { font-family: var(--font-en); font-size: clamp(4rem, 8vw, 6rem); font-weight: 800; color: var(--c-blue); line-height: 1; letter-spacing: -0.05em; }
         .donut-text .percent { font-size: 2rem; font-weight: 700; }
@@ -682,9 +682,9 @@
         <div class="container grid-2">
             <div class="reveal">
                 <span class="en-label">By the Numbers</span>
-                <h2 class="section-title">数字で見る、<br>ダイレクトウェイヴ。</h2>
+                <h2 class="section-title">文系からエンジニアへ<br>7割が未経験スタート。</h2>
                 <p style="font-size: 1.1rem; font-weight: 800; margin-bottom: 1rem; color: var(--c-blue);">未経験・文系卒からの入社実績</p>
-                <p class="c-text-sub" style="color: var(--c-text-sub);">ほぼ全員がIT未経験からのスタートです。だからこそ、未経験者のつまづきを熟知した教育体制が整っています。</p>
+                <p class="c-text-sub" style="color: var(--c-text-sub);">ITの知識がなくても問題ありません。過去の豊富な育成実績に基づき、現場目線に立った教育体制が整っています。</p>
             </div>
             <div class="donut-wrapper reveal" id="donut-container">
                 <svg viewBox="0 0 260 260" class="donut-chart">
@@ -836,7 +836,7 @@
                     <div class="tl-item">
                         <div class="tl-num">1</div>
                         <div class="tl-title">まずは：カジュアル面談（30分）</div>
-                        <div class="tl-desc">選考ではなく対話です。私服でリラックスしてお話しましょう。</div>
+                        <div class="tl-desc">選考ではなく対話です。私服でリラックスしてお話しましょう。お話ししたうえで「進みたい」と思っていただけたら、そこから面接のご案内をします。</div>
                     </div>
                     <div class="tl-item">
                         <div class="tl-num">2</div>
@@ -886,7 +886,7 @@
                 <div class="reveal">
                     <div class="faq-item">
                         <button class="faq-q">選考の流れを教えてください。 <span class="faq-icon"></span></button>
-                        <div class="faq-a"><p>まずカジュアル面談（30分・オンライン可）からです。選考ではなく対話です。書類は必要ありません。</p></div>
+                        <div class="faq-a"><p>まずカジュアル面談(30分・オンライン可)からです。選考ではなく対話です。書類は必要ありません。</p></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-q">人見知りでも大丈夫ですか？ <span class="faq-icon"></span></button>
@@ -909,7 +909,7 @@
         <div class="container reveal">
             <div class="cta-card">
                 <h2 class="cta-title">カジュアル面談はこちら</h2>
-                <p class="cta-desc">履歴書はもちろん不要です。<br class="pc-only">あなたが聞きたいことだけを質問する時間でも構いません。まずはテキストでの相談からでもOKです。<br class="pc-only">就業後でも対応しています！</p>
+                <p class="cta-desc">履歴書はもちろん不要です。<br class="pc-only">あなたが聞きたいことだけを質問する時間でも構いません。まずはテキストでの相談からでもOKです。<br class="pc-only"></p>
               <div style="display: flex; justify-content: center;">
                     <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-main" target="_blank" rel="noopener noreferrer">カジュアル面談へ &gt;</a>
             </div>
@@ -938,13 +938,7 @@
                     </div>
                 </div>
 
-                <div class="recruit-box secondary">
-                    <h3 class="recruit-box-title">中途・その他採用</h3>
-                    <div class="recruit-btn-grid">
-                        <a href="https://www.directwave.co.jp/recruit/" class="btn-secondary-cta">未経験者採用 <span class="arrow-circle">&gt;</span></a>
-                        <a href="https://www.directwave.co.jp/recruit/" class="btn-secondary-cta">障がい者採用 <span class="arrow-circle">&gt;</span></a>
-                    </div>
-                </div>
+                
             </div>
         </div>
     </section>
@@ -984,7 +978,7 @@
         }, { rootMargin: "0px 0px -100px 0px", threshold: 0 });
         revealElements.forEach(el => revealObserver.observe(el));
 
-        // 80% 円グラフのアニメーション
+        // 70% 円グラフのアニメーション
         const donutContainer = document.getElementById('donut-container');
         const counterEl = document.getElementById('counter');
         let hasCounted = false;
@@ -995,7 +989,7 @@
                 donutContainer.classList.add('is-active');
                 
                 let count = 0;
-                const target = 80;
+                const target = 70;
                 const duration = 2500; 
                 const increment = target / (duration / 16); 
                 
