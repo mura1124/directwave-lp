@@ -14,7 +14,6 @@
     <link rel="icon" type="image/webp" href="wave-icon.webp">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
     <style>
-        /* トップページと完全に同一のカラー・フォント設定 */
         :root {
             --c-blue: #1848b8;
             --c-blue-light: #eff6ff;
@@ -36,7 +35,7 @@
         .container { max-width: 960px; margin: 0 auto; padding: 0 5%; }
         section { padding: 80px 0; }
         
-        /* Header（index.htmlと統一） */
+        /* Header */
         header { 
             background: rgba(255, 255, 255, 0.98); 
             backdrop-filter: blur(10px);
@@ -57,8 +56,20 @@
             margin: 0 auto;
         }
         .logo-img { height: 36px; width: auto; }
-        .back-link { font-size: 0.9rem; font-weight: 700; color: var(--c-text-sub); display: flex; align-items: center; gap: 5px; transition: color 0.3s; }
-        .back-link:hover { color: var(--c-blue); }
+        
+        /* トップページと完全に一致させたボタンCSS */
+        .btn-primary {
+            display: inline-flex; justify-content: center; align-items: center;
+            padding: 12px 28px; 
+            background-color: var(--c-orange); 
+            color: #fff;
+            font-weight: 700; font-size: 0.85rem; border-radius: 50px;
+            letter-spacing: 0.05em; transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(242, 125, 82, 0.3); 
+            position: relative; z-index: 2;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(242, 125, 82, 0.4); }
+        .pc-only { display: block; }
 
         /* Page Header */
         .page-header { background: var(--c-bg-gray); padding: 80px 0; text-align: center; border-bottom: 1px solid var(--c-border); }
@@ -84,7 +95,6 @@
         .feature-card h4::before { content: ''; display: inline-block; width: 6px; height: 16px; background: var(--c-orange); border-radius: 4px; margin-top: 4px; flex-shrink: 0; }
         .feature-card p { font-size: 0.95rem; color: var(--c-text-sub); line-height: 1.6; margin-bottom: 0; }
         
-        /* イベント用のリストスタイル */
         .event-list { list-style: none; margin-top: 8px; font-size: 0.9rem; color: var(--c-text-sub); }
         .event-list li { margin-bottom: 10px; padding-left: 12px; position: relative; line-height: 1.5; }
         .event-list li::before { content: '・'; position: absolute; left: 0; top: 0; color: var(--c-orange); }
@@ -114,45 +124,121 @@
         .info-table td { width: 75%; font-size: 0.95rem; color: var(--c-text-main); }
         .uni-list { font-size: 0.85rem; color: var(--c-text-sub); line-height: 1.6; max-height: 150px; overflow-y: auto; padding: 10px; background: #fff; border: 1px solid var(--c-border); border-radius: 4px; }
 
-        /* CTA & Fixed Button */
-        .cta-box { background: var(--c-blue-light); border: 1px solid #dbeafe; padding: 50px 30px; border-radius: 12px; text-align: center; margin-top: 60px; }
+        /* CTA Card & Buttons */
+        .cta-card { background: #fff; border-radius: 16px; padding: 50px 40px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 60px; margin-bottom: 30px; border: 1px solid var(--c-border); }
+        .cta-title { font-size: 1.8rem; font-weight: 900; margin-bottom: 1rem; color: var(--c-text-main); }
+        .cta-desc { font-size: 0.95rem; color: var(--c-text-sub); margin-bottom: 2rem; line-height: 1.6; }
+
         .btn-main { display: inline-flex; align-items: center; justify-content: center; background: var(--c-orange); color: #fff; padding: 16px 40px; border-radius: 50px; font-weight: 700; font-size: 1.05rem; transition: 0.3s; box-shadow: 0 4px 15px rgba(242, 125, 82, 0.3); text-decoration: none; }
         .btn-main:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(242, 125, 82, 0.4); }
 
         .sp-fixed-cta { display: none; position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(255,255,255,0.95); padding: 12px 16px 20px; box-shadow: 0 -2px 10px rgba(0,0,0,0.05); z-index: 999; }
         .sp-fixed-cta .btn-main { width: 100%; padding: 14px; font-size: 1rem; box-shadow: none; }
 
-        /* Footer */
-        .site-footer { background-color: var(--c-bg-white); border-top: 1px solid var(--c-border); padding: 60px 0 20px; text-align: center; }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; flex-wrap: wrap; gap: 20px; }
-        .footer-logo { height: 24px; width: auto; margin-bottom: 12px; }
-        .footer-info { text-align: left; }
-        .footer-info p { font-size: 0.85rem; color: var(--c-text-sub); font-weight: 500; }
-        .footer-links { display: flex; gap: 24px; }
-        .footer-links a { font-size: 0.85rem; color: var(--c-text-sub); font-weight: 700; transition: color 0.3s; }
-        .footer-links a:hover { color: var(--c-blue); }
-        .footer-copyright { font-size: 0.75rem; color: #94a3b8; font-family: var(--font-en); }
+        /* =========================================
+           Modern Footer
+           ========================================= */
+        .site-footer {
+            background-color: var(--c-text-main); 
+            color: #f8fafc;
+            padding: 80px 0 30px;
+        }
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 60px;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .footer-info {
+            flex: 1;
+            min-width: 280px;
+        }
+        .footer-logo {
+            height: 28px;
+            width: auto;
+            margin-bottom: 20px;
+            filter: brightness(0) invert(1); 
+        }
+        .footer-info p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            line-height: 1.8;
+        }
+        .footer-nav {
+            display: flex;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+        .footer-nav-col h4 {
+            font-size: 1rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: #fff;
+            letter-spacing: 0.05em;
+        }
+        .footer-nav-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .footer-nav-col ul li {
+            margin-bottom: 12px;
+        }
+        .footer-nav-col a {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .footer-nav-col a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: #64748b;
+            font-family: var(--font-en);
+        }
+        .footer-legal-links a {
+            font-size: 0.8rem;
+            color: #64748b;
+            transition: color 0.3s;
+        }
+        .footer-legal-links a:hover {
+            color: #94a3b8;
+        }
 
         /* SP用ユーティリティ */
         .sp-only { display: none; }
 
-        /* スマホ用設定 */
         @media (max-width: 768px) {
             body { padding-bottom: 80px; padding-top: 60px; }
             .header-inner { padding: 12px 5%; }
             .sp-fixed-cta { display: block; }
             .sp-only { display: inline !important; }
+            .pc-only { display: none !important; }
             .metrics-grid { grid-template-columns: 1fr; gap: 15px; }
             .grid-2 { grid-template-columns: 1fr; }
             .info-table th, .info-table td { display: block; width: 100%; padding: 15px 10px; }
             .info-table th { border-bottom: none; padding-bottom: 0; background: transparent; color: var(--c-blue); }
             .info-table td { padding-top: 5px; }
-            .cta-box h3 { font-size: 1.1rem; }
-            .cta-box p { text-align: left; font-size: 0.9rem; }
-            .site-footer { padding: 40px 0 100px; }
-            .footer-inner { flex-direction: column; text-align: center; gap: 30px; }
-            .footer-info { text-align: center; }
-            .footer-links { flex-direction: column; gap: 15px; }
+            .cta-card { padding: 30px 20px; }
+            .cta-title { font-size: 1.5rem; }
+
+            .site-footer { padding: 60px 0 100px; }
+            .footer-inner { flex-direction: column; gap: 40px; }
+            .footer-nav { flex-direction: column; gap: 30px; width: 100%; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
@@ -160,10 +246,10 @@
 
     <header>
         <div class="header-inner">
-            <a href="#" class="logo" aria-label="ページのトップへ戻る">
+            <a href="index.html" class="logo" aria-label="トップページへ">
                 <img src="logo.png" alt="DirectWave" class="logo-img">
             </a>
-            <a href="index.html" class="back-link"><span>&lt;</span> トップページへ</a>
+            <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-primary pc-only" target="_blank" rel="noopener noreferrer">カジュアル面談はこちら</a>
         </div>
     </header>
 
@@ -309,7 +395,7 @@
                     前年採用実績数：2026年度 11名 ／ 2025年度 10名<br>
                     採用予定学部・学科：全学部全学科対象
                 </td></tr>
-                <tr><th>提出書類</th><td>履歴書 ／ 成績証明書 ／ 卒業見込証明書<br><span style="font-size: 0.85rem; color: var(--c-orange); font-weight:700;">※説明会の段階では一切不要です。</span></td></tr>
+                <tr><th>提出書類</th><td>履歴書 ／ 成績証明書 ／ 卒業見込証明書<br><span style="font-size: 0.85rem; color: var(--c-orange); font-weight:700;">※カジュアル面談の段階では一切不要です。</span></td></tr>
                 <tr><th>採用実績校</th>
                     <td>
                         <div class="uni-list">
@@ -328,16 +414,12 @@
                 </td></tr>
             </table>
 
-            <div class="cta-box">
-                <h3 style="font-size: 1.4rem; font-weight: 900; margin-bottom: 10px; color: var(--c-blue);">まずは、<br class="sp-only">オンライン会社説明会へ</h3>
-                <p style="color: var(--c-text-sub); margin-bottom: 25px; line-height: 2;">
-                    選考フロー：<br class="sp-only">
-                    ① オンライン説明会<br class="sp-only">
-                    ② 1次選考（オンラインによる「AI面接」または「対人面接」を選択）<br class="sp-only">
-                    ③ 2次選考（対面）<br><br class="sp-only">
-                    <strong>説明会の段階では、履歴書は必要ありません。<br class="sp-only">私服でお気軽にご参加ください。</strong>
-                </p>
-                <a href="https://calendar.app.google/PNHTWwztswKm4jrF9" class="btn-main" target="_blank" rel="noopener noreferrer">説明会・面談を予約する &gt;</a>
+            <div class="cta-card">
+                <h2 class="cta-title">カジュアル面談はこちら</h2>
+                <p class="cta-desc">履歴書はもちろん不要です。<br class="pc-only">あなたが聞きたいことだけを質問する時間でも構いません。まずはテキストでの相談からでもOKです。<br class="pc-only"></p>
+                <div style="display: flex; justify-content: center;">
+                    <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-main" target="_blank" rel="noopener noreferrer">カジュアル面談へ &gt;</a>
+                </div>
             </div>
         </div>
     </section>
@@ -347,21 +429,39 @@
             <div class="footer-inner">
                 <div class="footer-info">
                     <img src="logo.png" alt="DirectWave" class="footer-logo">
-                    <p>株式会社ダイレクトウェイヴ</p>
+                    <p>〒150-0013<br>東京都渋谷区恵比寿1-19-15<br>ウノサワ東急ビル7F</p>
                 </div>
-                <ul class="footer-links">
-                    <li><a href="https://www.directwave.co.jp/" target="_blank" rel="noopener noreferrer">コーポレートサイト</a></li>
-                    <li><a href="https://www.directwave.co.jp/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a></li>
-                </ul>
+                <div class="footer-nav">
+                    <div class="footer-nav-col">
+                        <h4>採用情報</h4>
+                        <ul>
+                            <li><a href="index.html">採用トップページ</a></li>
+                            <li><a href="recruit-univ.html">新卒採用（大卒）</a></li>
+                            <li><a href="recruit-senmon.html">新卒採用（専門卒）</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-nav-col">
+                        <h4>企業情報</h4>
+                        <ul>
+                            <li><a href="https://www.directwave.co.jp/" target="_blank" rel="noopener noreferrer">コーポレートサイト</a></li>
+                            <li><a href="https://www.directwave.co.jp/interview/" target="_blank" rel="noopener noreferrer">社員インタビュー</a></li>
+                        </ul>
+                    </div>
+                </div>
             </div>
-            <div class="footer-copyright">
-                <small>&copy; DirectWave Co., Ltd. All Rights Reserved.</small>
+            <div class="footer-bottom">
+                <div class="footer-copyright">
+                    <small>&copy; DirectWave Co., Ltd. All Rights Reserved.</small>
+                </div>
+                <div class="footer-legal-links">
+                    <a href="https://www.directwave.co.jp/privacy/" target="_blank" rel="noopener noreferrer">プライバシーポリシー</a>
+                </div>
             </div>
         </div>
     </footer>
 
     <div class="sp-fixed-cta">
-        <a href="https://calendar.app.google/PNHTWwztswKm4jrF9" class="btn-main" target="_blank" rel="noopener noreferrer">説明会・面談を予約する &gt;</a>
+        <a href="https://forms.gle/jWWYDhhmFkWtTTi37" class="btn-main" target="_blank" rel="noopener noreferrer">カジュアル面談へ &gt;</a>
     </div>
 
     <script>
